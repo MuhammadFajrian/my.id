@@ -23,13 +23,13 @@ export const socialPlatforms = {
     label: "GitHub",
     icon: "github",
     match: "github.com",
-    fallback: "https://github.com/",
+    fallback: "https://github.com/MuhammadFajrian",
   },
   linkedin: {
     label: "LinkedIn",
     icon: "linkedin",
     match: "linkedin.com",
-    fallback: "https://www.linkedin.com/",
+    fallback: "https://www.linkedin.com/in/muhammad-fajrian",
   },
   // `author.twitter` wins when set, because a handle is more specific than a sameAs host match.
   twitter: {
