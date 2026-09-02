@@ -10,8 +10,7 @@ CSS-first token architecture. Single-language. Package manager: **pnpm**.
 | `pnpm install` | Install dependencies                      |
 | `pnpm dev`     | Dev server at `localhost:4321`            |
 | `pnpm build`   | Production build to `dist/`               |
-| `pnpm preview` | `wrangler dev` — the built Worker locally |
-| `pnpm deploy`  | `astro build && wrangler deploy`          |
+| `pnpm preview` | `astro preview` — preview the built site locally |
 | `pnpm lint`    | ESLint                                    |
 | `pnpm format`  | `eslint --fix` then Prettier              |
 | `pnpm check`   | `astro check` (type `.astro`/`.ts`)       |
@@ -64,11 +63,10 @@ src/
 - **Set `SITE_URL` in the build environment** before a production deploy — `astro.config.mjs` falls
   back to the `https://example.com` placeholder, which feeds the sitemap and the canonical/OG URLs in
   `BaseHead.astro`. A production build (`DEPLOY_ENV=production`) throws on the placeholder.
-- **Hosting is Cloudflare Workers** (`@astrojs/cloudflare` + `wrangler.jsonc`). The wrangler `main`
-  must stay `@astrojs/cloudflare/entrypoints/server` — never a `dist/` path (it breaks `astro
-check`). Server secrets (the Resend keys) go through the `astro:env` schema in `astro.config.mjs`,
-  NOT `import.meta.env` — Workers runtime secrets never reach `import.meta.env`. Set them with
-  `pnpm wrangler secret put <NAME>`; local dev reads `.env` as usual.
+- **Hosting is Vercel** (`@astrojs/vercel`). Deployment is handled through the Vercel dashboard Git
+  integration — push to `main` and Vercel builds automatically. Server secrets (the Resend keys) go
+  through the `astro:env` schema in `astro.config.mjs`, NOT `import.meta.env`. Set them in the Vercel
+  dashboard under Settings → Environment Variables; local dev reads `.env` as usual.
 - **`vite.build.assetsInlineLimit: 0`** is intentional — inlined short scripts break under
   `<ClientRouter />` view transitions. Leave it at 0.
 - **Theme is set pre-paint** by an inline script in `BaseHead` (follows the device

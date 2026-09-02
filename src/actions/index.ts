@@ -13,8 +13,8 @@ import siteData from "@config/siteData.json";
 import { buildEmail, contactSchema, spamReason } from "@js/contact";
 import { sendContactEmail } from "@js/resend";
 import { ActionError, defineAction } from "astro:actions";
-// astro:env, not import.meta.env: on Cloudflare Workers secrets live only in the runtime env,
-// which import.meta.env never sees. Declared (all optional) in astro.config.mjs `env.schema`.
+// astro:env, not import.meta.env: on Vercel, secrets set in the dashboard are available via
+// process.env at runtime. Declared (all optional) in astro.config.mjs `env.schema`.
 import { CONTACT_FROM_EMAIL, CONTACT_TO_EMAIL, RESEND_API_KEY } from "astro:env/server";
 
 export const server = {
@@ -37,7 +37,7 @@ export const server = {
         const missing = [!apiKey && "RESEND_API_KEY", !to && "CONTACT_TO_EMAIL"].filter(Boolean);
         console.error(
           `[contact] Not configured — set ${missing.join(" and ")} (see .env.example). ` +
-            `On Cloudflare: pnpm wrangler secret put <NAME>.`,
+            `On Vercel: set in Settings → Environment Variables.`,
         );
         throw new ActionError({
           code: "INTERNAL_SERVER_ERROR",

@@ -8,11 +8,11 @@ import { type PortfolioDataProps } from "./types/configDataTypes";
 const portfolioData = {
   profile: {
     tagline: "Dev 01",
-    heading: "The Full-Stack Dev",
-    role: "Full-Stack",
+    heading: "The Backend Dev",
+    role: "Backend Developer",
     years: "8+",
     bio: [
-      "Welcome to the mainframe. I'm a full-stack developer with 8+ years of experience building scalable web applications, APIs, and tools. This profile serves as a chronological log of my projects, open-source contributions, and the systems I've shipped.",
+      "Welcome to the mainframe. I'm a backend developer with 8+ years of experience building scalable web applications, APIs, and tools. This profile serves as a chronological log of my projects, open-source contributions, and the systems I've shipped.",
       "I'm passionate about clean code, automated testing, and shipping fast. I write about modern frontend patterns, backend architecture, and the tools that keep my workflow efficient.",
     ],
     shortBio:
@@ -23,21 +23,22 @@ const portfolioData = {
       favorite: "8-Bit Chiptunes",
     },
     skills: [
-      { label: "Frontend", pct: 95 },
-      { label: "Backend", pct: 90 },
+      { label: "Frontend", pct: 80 },
+      { label: "Backend", pct: 95 },
     ],
   },
 
   stats: {
     home: ["Posts: 42", "Years: 03", "Coffee: 9000+"],
-    profile: ["Class: Full-Stack Dev", "Lvl: 8+", "XP: 8.5K", "Stars: 2.1K"],
+    profile: ["Class: Backend Dev", "Lvl: 8+", "XP: 8.5K", "Stars: 2.1K"],
   },
 
   home: {
     tagline: "Player 1",
     heading: "Welcome, Player One",
     intro:
-      "Level up your knowledge with my latest dev logs, tutorials, and retro tech explorations. Press start to begin your journey.",
+      // "Level up your knowledge with my latest dev logs, tutorials, and retro tech explorations. Press start to begin your journey.",
+      "Main quest: Keeping servers alive and database queries lightning-fast. Welcome to my 8-bit basecamp. Check out the latest dev logs or connect for the next stage. Insert coin to begin!",
   },
 
   contact: {

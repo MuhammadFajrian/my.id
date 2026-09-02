@@ -1,5 +1,5 @@
 // @ts-check
-import cloudflare from "@astrojs/cloudflare";
+import vercel from "@astrojs/vercel";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
@@ -38,16 +38,16 @@ export default defineConfig({
 
   // The site is static EXCEPT one page: `/contact/` sets `export const prerender = false` because
   // it receives the Resend form POST and re-renders itself with the result.
-  // That single on-demand route is the only thing the Cloudflare Worker ever runs; every other
-  // route still prerenders to HTML and is served as a static asset (see wrangler.jsonc). Swap this
-  // for `@astrojs/node` / `@astrojs/netlify` / `@astrojs/vercel` in two lines if the host changes
-  // (nothing else knows which adapter is mounted). Drop the contact form and remove this line to go
-  // fully static again.
-  adapter: cloudflare(),
+  // That single on-demand route is the only thing the Vercel serverless function runs; every other
+  // route still prerenders to HTML and is served as a static asset. Swap this
+  // for `@astrojs/node` / `@astrojs/netlify` / `@astrojs/cloudflare` in two lines if the host
+  // changes (nothing else knows which adapter is mounted). Drop the contact form and remove this
+  // line to go fully static again.
+  adapter: vercel(),
 
   // The contact action's mail keys, declared through `astro:env` so they resolve at REQUEST time on
-  // every adapter — on Cloudflare Workers, secrets exist only in the runtime env (`wrangler secret`),
-  // which `import.meta.env` never sees. All optional: a missing key must not break the build; the
+  // every adapter — on Vercel, secrets set in the dashboard are available via `process.env` at
+  // runtime. All optional: a missing key must not break the build; the
   // action logs which key is missing to the server and answers the visitor with its generic
   // send-failure message instead (see src/actions/index.ts).
   env: {
